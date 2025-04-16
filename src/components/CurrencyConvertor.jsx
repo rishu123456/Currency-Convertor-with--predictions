@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Dropdown from "../dropdown";
+import ExchangeRateChart from "../hooks/ExchangeRateChart";
 
 
 const CurrencyConvertor = () => {
     const [currecncy, setCurrencies] = useState([]);
     const [amount, setAmount] = useState(1);
-    const [fromCurrency, setFromCurrency] = useState("USD");
-    const [toCurrency, setToCurrency] = useState("INR");
+    const [fromCurrency, setFromCurrency] = useState("AED");
+    const [toCurrency, setToCurrency] = useState("AFN");
     const [convertedAmount, setConvertedAmount] = useState();
     const { isLoading, error, data } = useFetch("https://v6.exchangerate-api.com/v6/4700003a1c884224399840a1/latest/USD")
-
+//c7826845bf05b88925a8aa81f4e52948 key for exchnageGenerate api
     useEffect(() => {
         if (data?.conversion_rates) {
             setCurrencies(data.conversion_rates);
@@ -51,6 +52,10 @@ const CurrencyConvertor = () => {
         </div>
         <div className=" mt-4 text-lg font-medium text-right text-green-500">
             converted amount is {convertedAmount}
+
+        </div>
+        <div>
+        <ExchangeRateChart fromCurrency={fromCurrency} toCurrency={toCurrency} />
 
         </div>
     </div>

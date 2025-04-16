@@ -7,6 +7,7 @@ const Dropdown = ({
     title
 
 }
+//i need to make a little down the second dropdown that can be possibly done byh giving mt-10.... or ...
 
 ) => {
 
