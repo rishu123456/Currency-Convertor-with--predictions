@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Dropdown from "../dropdown";
-import ExchangeRateChart from "../hooks/ExchangeRateChart";
+import LiveCurrencyTable from "./LiveCurrencyTable";
+import ExchangeRateChart from "./ExchangeRateChart";
 
 
 const CurrencyConvertor = () => {
@@ -11,12 +12,10 @@ const CurrencyConvertor = () => {
     const [toCurrency, setToCurrency] = useState("AFN");
     const [convertedAmount, setConvertedAmount] = useState();
     const { isLoading, error, data } = useFetch("https://v6.exchangerate-api.com/v6/4700003a1c884224399840a1/latest/USD")
-//c7826845bf05b88925a8aa81f4e52948 key for exchnageGenerate api
     useEffect(() => {
         if (data?.conversion_rates) {
             setCurrencies(data.conversion_rates);
-            console.log("hjk", data.conversion_rates);
-            console.log("rate", currecncy.INR);
+            console.log("conversion", data.conversion_rates);
         }
     }, [data]);
 
@@ -56,6 +55,7 @@ const CurrencyConvertor = () => {
         </div>
         <div>
         <ExchangeRateChart fromCurrency={fromCurrency} toCurrency={toCurrency} />
+        <LiveCurrencyTable fromCurrency={fromCurrency} />
 
         </div>
     </div>

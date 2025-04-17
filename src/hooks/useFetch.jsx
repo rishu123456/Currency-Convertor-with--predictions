@@ -1,29 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
-    const [error, setError] = useState("");
+const useFetch = (url, options = {}, maxRetries = 3) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let retries = 0;
 
     const fetchData = async () => {
-        try {
-            const res = await fetch(url);
-            const json = await res.json();
-            setData(json);
-        } catch (err) {
-            setError(err.message || "Something went wrong");
-        } finally {
-            setLoading(false);
+      try {
+        setIsLoading(true);
+        const response = await fetch(url, options);
+        if (!response.ok) throw new Error("Network response was not ok");
+        const result = await response.json();
+        setData(result);
+        setError(null);
+      } catch (err) {
+        if (retries < maxRetries) {
+          retries++;
+          console.warn(`Retrying (${retries}/${maxRetries})...`);
+          setTimeout(fetchData, 1000 * retries);
+        } else {
+          setError(err.message || "Something went wrong");
         }
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    useEffect(() => {
-        if (url) {
-            fetchData();
-        }
-    }, [url]);
+    fetchData();
+  }, [url]);
 
-    return { isLoading, data, error };
+  return { data, error, isLoading };
 };
 
 export default useFetch;

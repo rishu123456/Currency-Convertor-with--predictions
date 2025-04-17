@@ -14,16 +14,12 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip,
 
 const ExchangeRateChart = ({ fromCurrency, toCurrency }) => {
   const [chartData, setChartData] = useState(null);
-  const API_KEY = "your_api_key"; // Replace with your CurrencyLayer API key
-
+ 
   useEffect(() => {
     const fetchHistoricalRates = async () => {
-      const endDate = new Date();
-      const startDate = new Date();
-      startDate.setDate(endDate.getDate() - 6); // Get 7 days of data
-
+      
       const formatDate = (date) => date.toISOString().split("T")[0];
-      const url = `https://api.exchangerate.host/timeframe?start_date=2025-04-10&end_date=2025-04-15&access_key=bca5167ce72617eab86787f79c4b2282`;
+      const url = `https://api.exchangerate.host/timeframe?start_date=2025-04-11&end_date=2025-04-17&access_key=9a28dee72935a60a9dd0236089898b8d`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -42,14 +38,8 @@ const ExchangeRateChart = ({ fromCurrency, toCurrency }) => {
            else if (usdToFrom && usdToTo) {
               return usdToTo / usdToFrom;
             }
-            return null; // gracefully handle missing values
+            return null;
           });
-
-        
-        // else {
-        //   const rates = labels.map(date => data.rates[date][toCurrency]);
-
-        // }
         
         setChartData({
           labels,
