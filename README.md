@@ -1,9 +1,10 @@
-#  Currency Converter with Live Rates & Offline Support
+#  Currency Converter with Predictions
 
 A modern currency converter web application built with **React**, featuring:
 
--  Live exchange rates via [ExchangeRate.host](https://exchangerate.host)
--  7-day exchange rate trend graph (Chart.js)
+-   Real-time currency conversion using ExchangeRate API - Where any currecny can be converted to any other dynamically based on exchange rates.
+-  Live exchange rates dynamically based on the selections, via [ExchangeRate.host](https://exchangerate.host)
+-  7-day exchange rate trend graph dynamically based on selection (Chart.js)
 -  Offline mode with persisted data (Redux + Redux Persist)
 - 📉 Error handling with auto-retry mechanism for API calls
 -  Built using Vite + React + TailwindCSS + Redux Toolkit
@@ -13,8 +14,8 @@ A modern currency converter web application built with **React**, featuring:
 ## 🚀 Features
 
 - Convert between popular currencies like USD, EUR, INR, JPY, etc.
-- View **live exchange rates** in a table format taking base as selected From currency in the App.
-- Display a **7-day trend chart** for any currency pair as we select From and To in the App.
+- View **live exchange rates** in a table format dynamically taking base as selected From currency in the App.
+- Display a **7-day trend chart** for any currency pair dynamically as we select From and To in the App.
 - Auto-refresh on currency switch
 - Offline support: app shows **last known exchange rates** if offline
 - API request **retry mechanism** (up to 3 times) before showing an error
