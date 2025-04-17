@@ -36,6 +36,7 @@ npm run dev
 ## Tech Stack
 
 - React
+- JavaScript
 - Redux Toolkit
 - Redux Persist
 - Chart.js (via `react-chartjs-2`)
