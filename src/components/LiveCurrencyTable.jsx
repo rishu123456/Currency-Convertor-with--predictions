@@ -12,7 +12,7 @@ const LiveCurrencyTable = ({ fromCurrency }) => {
   const dispatch = useDispatch();  
   const storedRates = useSelector((state) => state.exchangeRates.data); 
   const { isLoading, data, error } = useFetch(
-    "https://api.exchangerate.host/live?access_key=9a28dee72935a60a9dd0236089898b8d"
+    "https://api.exchangerate.host/live?access_key=f3285d2c3d13e77ac2de3b1997ec4345"
   );
 
   useEffect(() => {

@@ -19,7 +19,7 @@ const ExchangeRateChart = ({ fromCurrency, toCurrency }) => {
     const fetchHistoricalRates = async () => {
       
       const formatDate = (date) => date.toISOString().split("T")[0];
-      const url = `https://api.exchangerate.host/timeframe?start_date=2025-04-11&end_date=2025-04-17&access_key=9a28dee72935a60a9dd0236089898b8d`;
+      const url = `https://api.exchangerate.host/timeframe?start_date=2025-04-11&end_date=2025-04-17&access_key=f3285d2c3d13e77ac2de3b1997ec4345`;
 
       const response = await fetch(url);
       const data = await response.json();
